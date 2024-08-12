@@ -1,0 +1,96 @@
+""" Alex's vim config (most of which is shamelessly stolen)
+
+
+
+""" ##### MISC STUFF IDFK #####
+syntax enable
+
+""" use ctrl+hjkl to move between splits
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
+""" Rebind jk to <ESC>
+inoremap jk <esc>
+"if you're here for vscode it looks like this:
+""vim.insertModeKeyBindings": [
+"        {
+"            "before": ["j", "k"],
+"            "after": ["<Esc>"] }
+"    ]
+
+filetype plugin indent on " used for auto-indentation
+
+
+
+""" ##### LEADER STUFF #####
+let mapleader = "," " map leader to comma
+
+"""   ,cp - Set for COPY mode (turn off non-printing chars)
+map <leader>cp :set nonumber<CR>:set nolist<CR>
+
+"""   ,pc - Opposite of ,cp - turns on non-printing chars
+map <leader>pc :set number<CR>:set list<CR>
+
+
+
+""" ##### OPTIONS #####
+set mouse=a                       " Mouse stuff
+set autoindent                    " Automatically indent on newlines
+set autowrite                     " Automatically save before commands like :next and :make
+"set cursorline                    " Highlight the cursor line
+set foldlevelstart=99             " Default to no folds closed on new buffers
+set foldmethod=syntax             " Fold using syntax by default
+set foldnestmax=5                 " Don't make me dig through more than 5 folds
+set hlsearch                      " Highlight matches when searching
+set ignorecase                    " Required for proper smartcase functionality
+set lazyredraw                    " Improves perf under some conditions
+"set nowrap                        " Disable line wrapping
+set number                        " Show line numbers
+set pastetoggle=<F2>              " Toggle paste mode with F2
+set scrolloff=5                   " Minimum # of lines to keep above and below cursor
+set shiftround                    " Round indents to nearest indent size when using < or >
+set showmode                      " Show me what mode I'm in
+set smartcase                     " Case insensitive unless typing with caps
+set smarttab                      " shiftwidth at the start of the line, smarttabstop everywhere else
+set splitbelow                    " Open horizontal splits below current buffer
+set splitright                    " Open vertical splits to the right of current buffer
+set termguicolors                 " Force GUI colors in terminals
+set timeoutlen=250                " Time in milliseconds to wait for a mapped sequence to complete.
+set updatetime=100                " Time in milliseconds until swap file is updated
+set virtualedit=block             " Allow cursor to be placed in virtual positions when in visual block mode
+set wildmode=longest,list:longest " use zsh-ish behavior for text completion
+"set wildoptions+=pum              " Display the completion matches using a popupmenu
+set winaltkeys=no                 " Allows all ALT combinations to be mapped
+
+"set completeopt =menu     " Use a popup menu to show the possible completions
+"set completeopt+=menuone  " Use the popup menu also when there is only one match
+"set completeopt+=noinsert " Do not insert any text for a match until the user selects a match from the menu
+"set completeopt+=noselect " Do not select a match in the menu, force the user to select one from the menu
+
+set formatoptions+=r      " DO insert the current comment leader after hitting <Enter> in Insert mode.
+set formatoptions-=o      " DO NOT insert the current comment leader after hitting 'o' or 'O' in Normal mode.
+set formatoptions-=t      " DO NOT automatically wrap non-comment lines when textwidth is set.
+
+" show me fancy characters for whitespace characters
+highlight SpecialKey ctermfg=DarkGrey
+highlight NonText    ctermfg=DarkGrey
+set showbreak=\\
+set list
+set listchars=tab:>\ ,trail:_,extends:>,precedes:<,nbsp:~
+
+set shortmess+=c  " Don't give ins-completion-menu messages
+set shortmess+=I  " Don't show the intro message when starting vim
+
+set wildignore =tags
+set wildignore+=*.o
+set wildignore+=*.py?
+
+" load lua plugins from ~/.config/nvim/lua/plugins.lua
+lua require('plugins')
+
+" run setup scripts for lua plugins from ~/.config/nvim/lua/setup.lua
+lua require('setup')
+
+colorscheme dracula
