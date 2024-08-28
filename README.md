@@ -1,6 +1,6 @@
 # neovim config
 
-based on [kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim)
+based on [kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim), inspired by [TJ's accompanying video](https://youtu.be/m8C0Cq9Uv9o)
 
 previous neovim configs are in `bak`
 
