@@ -54,11 +54,12 @@ If you experience any errors while trying to install, run `:checkhealth` for mor
 -- NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
 vim.g.mapleader = ','
 vim.g.maplocalleader = ','
---   ,cp - Set for COPY mode (turn off non-printing chars)
-vim.api.nvim_set_keymap('n', '<Leader>cp', ':set nonumber<CR>:set nolist<CR>', {})
 
---   ,pc - Opposite of ,cp - turns on non-printing chars
-vim.api.nvim_set_keymap('n', '<Leader>pc', ':set number<CR>:set list<CR>', {})
+-- ,cp - Set for COPY mode (turn off non-printing chars)
+-- getting rid of these for now as they seem to maybe intersect with some of the kickstart stuff
+-- vim.api.nvim_set_keymap('n', '<Leader>cp', ':set nonumber<CR>:set nolist<CR>', {})
+-- ,pc - Opposite of ,cp - turns on non-printing chars
+-- vim.api.nvim_set_keymap('n', '<Leader>pc', ':set number<CR>:set list<CR>', {})
 
 -- ####################
 -- Options
