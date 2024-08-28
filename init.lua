@@ -39,78 +39,132 @@ If you experience any errors while trying to install, run `:checkhealth` for mor
 
 --]]
 
--- Set <space> as the leader key
+
+-- ####################
+--- Leader
+-- ####################
+
+-- Using comma as the leader key
+-- I chose comma because you usually hit space after a comma, which leaves every other key free to be assigned with no weirdness
+-- considered using space, but it adds delay for some people?
+-- If you use space, make sure you have no other semi-conflicting bindings causing lag by searching via `verbose imap <space>`
+-- `g` is also another decent consideration (as vim already has mappings that start with `g` so it feels conventional)
+
 -- See `:help mapleader`
---  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
+
+-- NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
+vim.g.mapleader = ','
+vim.g.maplocalleader = ','
+--   ,cp - Set for COPY mode (turn off non-printing chars)
+vim.api.nvim_set_keymap('n', '<Leader>cp', ':set nonumber<CR>:set nolist<CR>', {})
+
+--   ,pc - Opposite of ,cp - turns on non-printing chars
+vim.api.nvim_set_keymap('n', '<Leader>pc', ':set number<CR>:set list<CR>', {})
+
+
+-- ####################
+-- Options
+-- ####################
+
+-- `:help vim.opt`
+-- see the list via `:help option-list`
+-- or at https://neovim.io/doc/user/options.html
+
+-- functionality
+vim.opt.mouse = 'a'              -- Mouse stuff, good for split resizing, `a` for all modes
+vim.opt.pastetoggle = '<F2>'     -- Toggle paste mode with F2, can also use `:set paste`, and `:set nopaste`
+vim.opt.scrolloff = 10           -- Minimum number of lines to keep above and below cursor
+vim.opt.timeoutlen = 300         -- Decrease mapped sequence and which-key wait time (default is 1000ms) - from kickstart
+vim.opt.undofile = true          -- save undo history to a file so it persists between sessions - from kickstart
+vim.opt.updatetime = 250         -- backup to swap file 250ms after I stop typing (default is 4000ms) - from kickstart
+
+-- display
+vim.opt.cursorline = true        -- highlight cursor line
+vim.opt.hlsearch = true          -- Highlight matches when searching
+vim.opt.inccommand = 'split'     -- show substitution command output in a live preview window - from kickstart
+vim.opt.number = true            -- Show line numbers
+vim.opt.showmode = false         -- Don't put the mode info on the last line, mode is already shown in status line - from kickstart
+vim.opt.signcolumn = 'yes'       -- show left hand side column for symbols (like debug breakpoints) - from kickstart
+
+-- indenting
+vim.opt.breakindent = true       -- wrapped lines continue visually indented - from kickstart
+vim.opt.shiftround = true        -- Round indents to nearest indent size when using < or >
+-- vim.opt.tabstop = 4              -- Display tabs 4 spaces wide, don't need anymore because of tpope/sleuth?
+
+-- folding
+vim.opt.foldlevelstart = 99      -- Default to no folds closed on new buffers
+vim.opt.foldmethod = 'syntax'    -- Fold using syntax by default
+vim.opt.foldnestmax = 5          -- Don't make me dig through more than 5 folds
+
+-- open splits in a sane way
+vim.opt.splitbelow = true        -- Open horizontal splits below current buffer
+vim.opt.splitright = true        -- Open vertical splits to the right of current buffer
+
+-- Case-insensitive searching UNLESS \C, \c, or a capital letter is in the search term
+vim.opt.ignorecase = true        -- Required for smartcase
+vim.opt.smartcase = true
+
+
+-- show fancy characters for weird or important whitespace characters
+-- I tried not to use any fancy characters here for compatibility but it probably doesn't really matter
+-- so TODO maybe someday use cool ones instead like: tab = '» ', trail = '·', nbsp = '␣'
+-- see `:help 'list'` and `:help 'listchars'`
+vim.api.nvim_set_hl(0, 'SpecialKey', {ctermfg = 'DarkGrey'})
+vim.api.nvim_set_hl(0, 'NonText', {ctermfg = 'DarkGrey'})
+vim.opt.showbreak= '\\'
+vim.opt.list = true
+vim.opt.listchars = { tab = '> ' , trail = '_', extends = '>', precedes = '<', nbsp = '~' }
+
+
+-- Rebind jk to <ESC>
+--[[
+if you're here for vscode it looks like this:
+"vim.insertModeKeyBindings": [
+  {
+    "before": ["j", "k"],
+    "after": ["<Esc>"]
+  }
+]
+--]]
+vim.keymap.set('i', 'jk', '<Esc>', { noremap = true })
+
+
+-- Make split navigation easier.
+--  Use CTRL+<hjkl> to switch between windows
+--
+--  See `:help wincmd` for a list of all window commands
+vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
+vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
+vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
+vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
+
+
+
+
+-- ####################
+-- TODO
+-- ####################
+
+-- maybe try relative line numbers for better jumping?
+-- I don't really do jumping rn so it'd be a habit change
+-- vim.opt.relativenumber = true
+
+-- Sync clipboard between OS and Neovim.
+-- this is on in kickstart, not sure if worth revisiting but last time I tried this I remember it being annoying
+--  Schedule the setting after `UiEnter` because it can increase startup-time.
+--  Remove this option if you want your OS clipboard to remain independent.
+--  See `:help 'clipboard'`
+-- vim.schedule(function()
+--   vim.opt.clipboard = 'unnamedplus'
+-- end)
+
+-- ##############################################
+-- configs from the kickstart repo
+-- ##############################################
 
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = false
 
--- [[ Setting options ]]
--- See `:help vim.opt`
--- NOTE: You can change these options as you wish!
---  For more options, you can see `:help option-list`
-
--- Make line numbers default
-vim.opt.number = true
--- You can also add relative line numbers, to help with jumping.
---  Experiment for yourself to see if you like it!
--- vim.opt.relativenumber = true
-
--- Enable mouse mode, can be useful for resizing splits for example!
-vim.opt.mouse = 'a'
-
--- Don't show the mode, since it's already in the status line
-vim.opt.showmode = false
-
--- Sync clipboard between OS and Neovim.
---  Schedule the setting after `UiEnter` because it can increase startup-time.
---  Remove this option if you want your OS clipboard to remain independent.
---  See `:help 'clipboard'`
-vim.schedule(function()
-  vim.opt.clipboard = 'unnamedplus'
-end)
-
--- Enable break indent
-vim.opt.breakindent = true
-
--- Save undo history
-vim.opt.undofile = true
-
--- Case-insensitive searching UNLESS \C or one or more capital letters in the search term
-vim.opt.ignorecase = true
-vim.opt.smartcase = true
-
--- Keep signcolumn on by default
-vim.opt.signcolumn = 'yes'
-
--- Decrease update time
-vim.opt.updatetime = 250
-
--- Decrease mapped sequence wait time
--- Displays which-key popup sooner
-vim.opt.timeoutlen = 300
-
--- Configure how new splits should be opened
-vim.opt.splitright = true
-vim.opt.splitbelow = true
-
--- Sets how neovim will display certain whitespace characters in the editor.
---  See `:help 'list'`
---  and `:help 'listchars'`
-vim.opt.list = true
-vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
-
--- Preview substitutions live, as you type!
-vim.opt.inccommand = 'split'
-
--- Show which line your cursor is on
-vim.opt.cursorline = true
-
--- Minimal number of screen lines to keep above and below the cursor.
-vim.opt.scrolloff = 10
 
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
@@ -129,21 +183,6 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 -- NOTE: This won't work in all terminal emulators/tmux/etc. Try your own mapping
 -- or just use <C-\><C-n> to exit terminal mode
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
-
--- TIP: Disable arrow keys in normal mode
--- vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
--- vim.keymap.set('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
--- vim.keymap.set('n', '<up>', '<cmd>echo "Use k to move!!"<CR>')
--- vim.keymap.set('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
-
--- Keybinds to make split navigation easier.
---  Use CTRL+<hjkl> to switch between windows
---
---  See `:help wincmd` for a list of all window commands
-vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
-vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
-vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
-vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
