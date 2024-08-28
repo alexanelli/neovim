@@ -72,7 +72,6 @@ vim.api.nvim_set_keymap('n', '<Leader>pc', ':set number<CR>:set list<CR>', {})
 
 -- functionality
 vim.opt.mouse = 'a'              -- Mouse stuff, good for split resizing, `a` for all modes
-vim.opt.pastetoggle = '<F2>'     -- Toggle paste mode with F2, can also use `:set paste`, and `:set nopaste`
 vim.opt.scrolloff = 10           -- Minimum number of lines to keep above and below cursor
 vim.opt.timeoutlen = 300         -- Decrease mapped sequence and which-key wait time (default is 1000ms) - from kickstart
 vim.opt.undofile = true          -- save undo history to a file so it persists between sessions - from kickstart
