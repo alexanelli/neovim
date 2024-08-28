@@ -39,7 +39,6 @@ If you experience any errors while trying to install, run `:checkhealth` for mor
 
 --]]
 
-
 -- ####################
 --- Leader
 -- ####################
@@ -61,7 +60,6 @@ vim.api.nvim_set_keymap('n', '<Leader>cp', ':set nonumber<CR>:set nolist<CR>', {
 --   ,pc - Opposite of ,cp - turns on non-printing chars
 vim.api.nvim_set_keymap('n', '<Leader>pc', ':set number<CR>:set list<CR>', {})
 
-
 -- ####################
 -- Options
 -- ####################
@@ -71,49 +69,47 @@ vim.api.nvim_set_keymap('n', '<Leader>pc', ':set number<CR>:set list<CR>', {})
 -- or at https://neovim.io/doc/user/options.html
 
 -- functionality
-vim.opt.mouse = 'a'              -- Mouse stuff, good for split resizing, `a` for all modes
-vim.opt.scrolloff = 10           -- Minimum number of lines to keep above and below cursor
-vim.opt.timeoutlen = 300         -- Decrease mapped sequence and which-key wait time (default is 1000ms) - from kickstart
-vim.opt.undofile = true          -- save undo history to a file so it persists between sessions - from kickstart
-vim.opt.updatetime = 250         -- backup to swap file 250ms after I stop typing (default is 4000ms) - from kickstart
+vim.opt.mouse = 'a' -- Mouse stuff, good for split resizing, `a` for all modes
+vim.opt.scrolloff = 10 -- Minimum number of lines to keep above and below cursor
+vim.opt.timeoutlen = 300 -- Decrease mapped sequence and which-key wait time (default is 1000ms) - from kickstart
+vim.opt.undofile = true -- save undo history to a file so it persists between sessions - from kickstart
+vim.opt.updatetime = 250 -- backup to swap file 250ms after I stop typing (default is 4000ms) - from kickstart
 
 -- display
-vim.opt.cursorline = true        -- highlight cursor line
-vim.opt.hlsearch = true          -- Highlight matches when searching
-vim.opt.inccommand = 'split'     -- show substitution command output in a live preview window - from kickstart
-vim.opt.number = true            -- Show line numbers
-vim.opt.showmode = false         -- Don't put the mode info on the last line, mode is already shown in status line - from kickstart
-vim.opt.signcolumn = 'yes'       -- show left hand side column for symbols (like debug breakpoints) - from kickstart
+vim.opt.cursorline = true -- highlight cursor line
+vim.opt.hlsearch = true -- Highlight matches when searching
+vim.opt.inccommand = 'split' -- show substitution command output in a live preview window - from kickstart
+vim.opt.number = true -- Show line numbers
+vim.opt.showmode = false -- Don't put the mode info on the last line, mode is already shown in status line - from kickstart
+vim.opt.signcolumn = 'yes' -- show left hand side column for symbols (like debug breakpoints) - from kickstart
 
 -- indenting
-vim.opt.breakindent = true       -- wrapped lines continue visually indented - from kickstart
-vim.opt.shiftround = true        -- Round indents to nearest indent size when using < or >
+vim.opt.breakindent = true -- wrapped lines continue visually indented - from kickstart
+vim.opt.shiftround = true -- Round indents to nearest indent size when using < or >
 -- vim.opt.tabstop = 4              -- Display tabs 4 spaces wide, don't need anymore because of tpope/sleuth?
 
 -- folding
-vim.opt.foldlevelstart = 99      -- Default to no folds closed on new buffers
-vim.opt.foldmethod = 'syntax'    -- Fold using syntax by default
-vim.opt.foldnestmax = 5          -- Don't make me dig through more than 5 folds
+vim.opt.foldlevelstart = 99 -- Default to no folds closed on new buffers
+vim.opt.foldmethod = 'syntax' -- Fold using syntax by default
+vim.opt.foldnestmax = 5 -- Don't make me dig through more than 5 folds
 
 -- open splits in a sane way
-vim.opt.splitbelow = true        -- Open horizontal splits below current buffer
-vim.opt.splitright = true        -- Open vertical splits to the right of current buffer
+vim.opt.splitbelow = true -- Open horizontal splits below current buffer
+vim.opt.splitright = true -- Open vertical splits to the right of current buffer
 
 -- Case-insensitive searching UNLESS \C, \c, or a capital letter is in the search term
-vim.opt.ignorecase = true        -- Required for smartcase
+vim.opt.ignorecase = true -- Required for smartcase
 vim.opt.smartcase = true
-
 
 -- show fancy characters for weird or important whitespace characters
 -- I tried not to use any fancy characters here for compatibility but it probably doesn't really matter
 -- so TODO maybe someday use cool ones instead like: tab = '» ', trail = '·', nbsp = '␣'
 -- see `:help 'list'` and `:help 'listchars'`
-vim.api.nvim_set_hl(0, 'SpecialKey', {ctermfg = 'DarkGrey'})
-vim.api.nvim_set_hl(0, 'NonText', {ctermfg = 'DarkGrey'})
-vim.opt.showbreak= '\\'
+vim.api.nvim_set_hl(0, 'SpecialKey', { ctermfg = 'DarkGrey' })
+vim.api.nvim_set_hl(0, 'NonText', { ctermfg = 'DarkGrey' })
+-- vim.opt.showbreak = '\\'
 vim.opt.list = true
-vim.opt.listchars = { tab = '> ' , trail = '_', extends = '>', precedes = '<', nbsp = '~' }
-
+vim.opt.listchars = { tab = '> ', trail = '_', extends = '>', precedes = '<', nbsp = '~' }
 
 -- Rebind jk to <ESC>
 --[[
@@ -127,7 +123,6 @@ if you're here for vscode it looks like this:
 --]]
 vim.keymap.set('i', 'jk', '<Esc>', { noremap = true })
 
-
 -- Make split navigation easier.
 --  Use CTRL+<hjkl> to switch between windows
 --
@@ -136,9 +131,6 @@ vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left wind
 vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
-
-
-
 
 -- ####################
 -- TODO
@@ -163,7 +155,6 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = false
-
 
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
