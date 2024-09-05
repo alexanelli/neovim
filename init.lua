@@ -87,7 +87,7 @@ vim.opt.signcolumn = 'yes' -- show left hand side column for symbols (like debug
 -- indenting
 vim.opt.breakindent = true -- wrapped lines continue visually indented - from kickstart
 vim.opt.shiftround = true -- Round indents to nearest indent size when using < or >
--- vim.opt.tabstop = 4              -- Display tabs 4 spaces wide, don't need anymore because of tpope/sleuth?
+vim.opt.tabstop = 4 -- Display tabs 4 spaces wide, don't need anymore because of tpope/sleuth?
 
 -- folding
 vim.opt.foldlevelstart = 99 -- Default to no folds closed on new buffers
@@ -555,7 +555,7 @@ require('lazy').setup({
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
       local servers = {
         -- clangd = {},
-        -- gopls = {},
+        gopls = {},
         -- pyright = {},
         -- rust_analyzer = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
