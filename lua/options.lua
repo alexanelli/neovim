@@ -43,6 +43,7 @@ vim.opt.smartcase = true
 -- I tried not to use any fancy characters here for compatibility but it probably doesn't really matter
 -- so TODO maybe someday use cool ones instead like: tab = '» ', trail = '·', nbsp = '␣'
 -- see `:help 'list'` and `:help 'listchars'`
+-- TODO: this isn't working? sortof? the color doesn't update correctly
 vim.api.nvim_set_hl(0, 'SpecialKey', { ctermfg = 'DarkGrey' })
 vim.api.nvim_set_hl(0, 'NonText', { ctermfg = 'DarkGrey' })
 -- vim.opt.showbreak = '\\'
