@@ -1,6 +1,9 @@
 return {
   {
     'nvim-neo-tree/neo-tree.nvim',
+    keys = {
+      { '<leader>/', '<cmd>Neotree toggle<cr>', desc = '[/] NeoTree toggle' },
+    },
     branch = 'v3.x',
     dependencies = {
       'nvim-lua/plenary.nvim',
