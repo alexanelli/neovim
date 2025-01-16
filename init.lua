@@ -62,7 +62,7 @@ vim.g.maplocalleader = ','
 -- vim.api.nvim_set_keymap('n', '<Leader>pc', ':set number<CR>:set list<CR>', {})
 
 -- Set to true if you have a Nerd Font installed and selected in the terminal
-vim.g.have_nerd_font = false
+vim.g.have_nerd_font = true
 
 -- [[ Setting options ]]
 require 'options'

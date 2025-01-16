@@ -1,12 +1,20 @@
-return {
+local XDG_CONFIG_HOME = os.getenv 'XDG_CONFIG_HOME'
 
+return {
   { -- Linting
     'mfussenegger/nvim-lint',
     event = { 'BufReadPre', 'BufNewFile' },
+    opts = {
+      linters = {
+        ['markdownlint-cli2'] = {
+          args = { '--config', XDG_CONFIG_HOME .. '/misc/markdownlint-cli2.yaml', '--' },
+        },
+      },
+    },
     config = function()
       local lint = require 'lint'
       lint.linters_by_ft = {
-        markdown = { 'markdownlint' },
+        markdown = { 'markdownlint-cli2' },
       }
 
       -- To allow other plugins to add linters to require('lint').linters_by_ft,
