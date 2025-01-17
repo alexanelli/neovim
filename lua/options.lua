@@ -20,6 +20,7 @@ vim.opt.inccommand = 'split' -- show substitution command output in a live previ
 vim.opt.number = true -- Show line numbers
 vim.opt.showmode = false -- Don't put the mode info on the last line, mode is already shown in status line - from kickstart
 vim.opt.signcolumn = 'yes' -- show left hand side column for symbols (like debug breakpoints) - from kickstart
+vim.opt.termguicolors = true -- force neovim to use 24bit colors
 
 -- indenting
 vim.opt.breakindent = true -- wrapped lines continue visually indented - from kickstart

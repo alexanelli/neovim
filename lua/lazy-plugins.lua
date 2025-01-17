@@ -19,24 +19,65 @@ require('lazy').setup({
   --
   -- Use `opts = {}` to force a plugin to be loaded.
   --
+  -- bufferline
+  { 'akinsho/bufferline.nvim', version = '*', dependencies = 'nvim-tree/nvim-web-devicons', opts = {} },
+  {
+    'ThePrimeagen/harpoon',
+    branch = 'harpoon2',
+    dependencies = { 'nvim-lua/plenary.nvim' },
+    opts = {},
+    config = function()
+      local harpoon = require 'harpoon'
+
+      harpoon:setup()
+
+      vim.keymap.set('n', '<leader>aa', function() harpoon:list():add() end, { desc = '[a]ppend' })
+      vim.keymap.set('n', '<leader>ap', function() harpoon:list():prepend() end, { desc = '[a]ppend [p]repend' })
+
+      vim.keymap.set('n', '<leader>ht', function() harpoon.ui:toggle_quick_menu(harpoon:list()) end, { desc = '[t]oggle quick menu' })
+
+      vim.keymap.set('n', '<leader>ha', function() harpoon:list():select(1) end, { desc = '[a] file 1' })
+      vim.keymap.set('n', '<leader>hs', function() harpoon:list():select(2) end, { desc = '[s] file 2' })
+      vim.keymap.set('n', '<leader>hd', function() harpoon:list():select(3) end, { desc = '[d] file 3' })
+      vim.keymap.set('n', '<leader>hf', function() harpoon:list():select(4) end, { desc = '[f] file 4' })
+
+      vim.keymap.set('n', '<leader>hA', function() harpoon:list():replace_at(1) end, { desc = '[A] replace file 1' })
+      vim.keymap.set('n', '<leader>hS', function() harpoon:list():replace_at(2) end, { desc = '[S] replace file 2' })
+      vim.keymap.set('n', '<leader>hD', function() harpoon:list():replace_at(3) end, { desc = '[D] replace file 3' })
+      vim.keymap.set('n', '<leader>hF', function() harpoon:list():replace_at(4) end, { desc = '[F] replace file 4' })
+    end,
+  },
 
   -- modular approach: using `require 'path/name'` will
   -- include a plugin definition from file lua/path/name.lua
 
+  -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
+  --    This is the easiest way to modularize your config.
+  --
+  --  Auto import everything in `lua/custom/plugins/*.lua`
+  --  For additional information, see `:help lazy.nvim-lazy.nvim-structuring-your-plugins`
+  -- { import = 'custom.plugins' },
+
   -- Adds git related signs to the gutter, as well as utilities for managing changes
-  require 'kickstart/plugins/gitsigns',
+  require 'kickstart.plugins.gitsigns',
 
   -- Useful plugin to show you pending keybinds.
-  require 'kickstart/plugins/which-key',
+  require 'kickstart.plugins.which-key',
 
   -- Fuzzy Finder (files, lsp, etc)
-  require 'kickstart/plugins/telescope',
+  require 'kickstart.plugins.telescope',
 
-  require 'kickstart/plugins/lspconfig',
+  require 'kickstart.plugins.lspconfig',
 
-  require 'kickstart/plugins/autoformat',
+  require 'kickstart.plugins.autoformat',
 
-  require 'kickstart/plugins/autocomplete',
+  require 'kickstart.plugins.autocomplete',
+
+  require 'kickstart.plugins.debug',
+  require 'kickstart.plugins.indent_line',
+  require 'kickstart.plugins.lint',
+  require 'kickstart.plugins.autopairs',
+  require 'kickstart.plugins.neo-tree',
 
   { -- You can easily change to a different colorscheme.
     -- Change the name of the colorscheme plugin below, and then
@@ -126,28 +167,6 @@ require('lazy').setup({
       --    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
     end,
   },
-
-  -- The following two comments only work if you have downloaded the kickstart repo, not just copy pasted the
-  -- init.lua. If you want these files, they are in the repository, so you can just download them and
-  -- place them in the correct locations.
-
-  -- NOTE: Next step on your Neovim journey: Add/Configure additional plugins for Kickstart
-  --
-  --  Here are some example plugins that I've included in the Kickstart repository.
-  --  Uncomment any of the lines below to enable them (you will need to restart nvim).
-  --
-  require 'kickstart.plugins.debug',
-  require 'kickstart.plugins.indent_line',
-  require 'kickstart.plugins.lint',
-  require 'kickstart.plugins.autopairs',
-  require 'kickstart.plugins.neo-tree',
-
-  -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
-  --    This is the easiest way to modularize your config.
-  --
-  --  Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
-  --    For additional information, see `:help lazy.nvim-lazy.nvim-structuring-your-plugins`
-  -- { import = 'custom.plugins' },
 }, {
   ui = {
     -- If you are using a Nerd Font: set icons to an empty table which will use the
