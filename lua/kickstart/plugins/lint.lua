@@ -1,18 +1,25 @@
 local XDG_CONFIG_HOME = os.getenv 'XDG_CONFIG_HOME'
+local markdowncliconfig = XDG_CONFIG_HOME .. '/misc/markdownlint-cli2.yaml'
 
 return {
   { -- Linting
     'mfussenegger/nvim-lint',
     event = { 'BufReadPre', 'BufNewFile' },
     opts = {
-      linters = {
-        ['markdownlint-cli2'] = {
-          args = { '--config', XDG_CONFIG_HOME .. '/misc/markdownlint-cli2.yaml', '--' },
-        },
-      },
+      -- linters = {
+      --   ['markdownlint-cli2'] = {
+      --     args = { '--config', XDG_CONFIG_HOME .. '/misc/markdownlint-cli2.yaml', '--' },
+      --   },
+      -- },
     },
     config = function()
       local lint = require 'lint'
+      local md = require('lint').linters['markdownlint-cli2']
+      md.args = {
+        '--config',
+        markdowncliconfig,
+        '--',
+      }
       lint.linters_by_ft = {
         markdown = { 'markdownlint-cli2' },
       }
