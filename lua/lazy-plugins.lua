@@ -22,35 +22,32 @@ require('lazy').setup({
   -- bufferline
   { 'akinsho/bufferline.nvim', version = '*', dependencies = 'nvim-tree/nvim-web-devicons', opts = {} },
 
-  -- modular approach: using `require 'path/name'` will
-  -- include a plugin definition from file lua/path/name.lua
+  -- `require 'path.name'` will include a plugin definition from file lua/path/name.lua
 
-  -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
-  --    This is the easiest way to modularize your config.
-  --
-  --  Auto import everything in `lua/custom/plugins/*.lua`
+
+  --  Auto import everything in `lua/plugins/*.lua`
   --  For additional information, see `:help lazy.nvim-lazy.nvim-structuring-your-plugins`
-  -- { import = 'custom.plugins' },
+  { import = 'plugins' },
 
   -- Adds git related signs to the gutter, as well as utilities for managing changes
-  require 'kickstart.plugins.gitsigns',
+  -- require 'kickstart.plugins.gitsigns',
 
   -- Useful plugin to show you pending keybinds.
-  require 'kickstart.plugins.which-key',
+  -- require 'kickstart.plugins.which-key',
 
   -- Fuzzy Finder (files, lsp, etc)
-  require 'kickstart.plugins.telescope',
+--   require 'kickstart.plugins.telescope',
 
-  require 'kickstart.plugins.lspconfig',
+  -- require 'kickstart.plugins.lspconfig',
 
-  require 'kickstart.plugins.autoformat',
+  -- require 'kickstart.plugins.autoformat',
 
-  require 'kickstart.plugins.autocomplete',
+  -- require 'kickstart.plugins.autocomplete',
 
-  require 'kickstart.plugins.debug',
-  require 'kickstart.plugins.indent_line',
-  require 'kickstart.plugins.autopairs',
-  require 'kickstart.plugins.neo-tree',
+--   require 'kickstart.plugins.debug',
+  -- require 'kickstart.plugins.indent_line',
+--   require 'kickstart.plugins.autopairs',
+  -- require 'kickstart.plugins.neo-tree',
 
   { -- You can easily change to a different colorscheme.
     -- Change the name of the colorscheme plugin below, and then
