@@ -1,4 +1,4 @@
--- lazy.nvim
+-- ui overhaul
 return {
   'folke/noice.nvim',
   event = 'VeryLazy',
