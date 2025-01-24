@@ -9,16 +9,14 @@ return {
     -- OPTIONAL:
     --   `nvim-notify` is only needed, if you want to use the notification view.
     --   If not available, we use `mini` as the fallback
-    { 'rcarriga/nvim-notify',
-      opts = {
-        timeout = 3000,
-        top_down = false,
-      }
-    },
+    { 'rcarriga/nvim-notify', opts = {
+      timeout = 3000,
+      top_down = false,
+    } },
   },
   opts = {
     format = {
-      conceal = false
+      conceal = false,
     },
     lsp = {
       -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
@@ -35,6 +33,14 @@ return {
       long_message_to_split = true, -- long messages will be sent to a split
       inc_rename = false, -- enables an input dialog for inc-rename.nvim
       lsp_doc_border = false, -- add a border to hover docs and signature help
+    },
+    views = {
+      cmdline_popup = {
+        position = {
+          row = '95%',
+          col = '50%'
+        },
+      },
     },
   },
 }
