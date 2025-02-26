@@ -1,3 +1,7 @@
+
+-- [[ Basic Keymaps ]]
+--  See `:help vim.keymap.set()`
+
 -- Rebind jk to <ESC>
 --[[
 if you're here for vscode it looks like this:
@@ -10,6 +14,10 @@ if you're here for vscode it looks like this:
 --]]
 vim.keymap.set('i', 'jk', '<Esc>', { noremap = true })
 
+-- shotcuts for copy/paste with system clipboard
+vim.keymap.set('v', '<leader>Sc', '"+y', {desc = '[S]ystem [c]opy'})
+vim.keymap.set('n', '<leader>Sp', '"+p', {desc = '[S]ystem [p]aste'})
+
 -- Make split navigation easier.
 --  Use CTRL+<hjkl> to switch between windows
 --
@@ -19,8 +27,6 @@ vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right win
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
--- [[ Basic Keymaps ]]
---  See `:help vim.keymap.set()`
 
 -- Clear highlights on search when pressing <Esc> in normal mode
 --  See `:help hlsearch`
@@ -36,6 +42,7 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 -- NOTE: This won't work in all terminal emulators/tmux/etc. Try your own mapping
 -- or just use <C-\><C-n> to exit terminal mode
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
+
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`

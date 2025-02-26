@@ -25,11 +25,11 @@ return {
         { '<leader>c', group = '[C]ode' },
         { '<leader>d', group = '[D]ocument' },
         { '<leader>r', group = '[R]ename' },
-        { '<leader>s', group = '[S]earch' },
+        { '<leader>s', group = '[s]earch' },
+        { '<leader>S', group = '[S]ystem', mode = {'n', 'v'} },
         { '<leader>w', group = '[W]orkspace' },
         { '<leader>t', group = '[T]oggle' },
         { '<leader>g', group = '[G]it Hunk', mode = { 'n', 'v' } },
-        { '<leader>h', group = '[H]arpoon' },
       }
     end,
   },

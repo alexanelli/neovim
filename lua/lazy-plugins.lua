@@ -10,56 +10,24 @@
 --
 -- NOTE: Here is where you install your plugins.
 require('lazy').setup({
-  -- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
-  'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
-
-  -- NOTE: Plugins can also be added by using a table,
-  -- with the first argument being the link and the following
-  -- keys can be used to configure plugin behavior/loading/etc.
-  --
-  -- Use `opts = {}` to force a plugin to be loaded.
-  --
-  -- bufferline
-  { 'akinsho/bufferline.nvim', version = '*', dependencies = 'nvim-tree/nvim-web-devicons', opts = {} },
-
-  -- `require 'path.name'` will include a plugin definition from file lua/path/name.lua
-
-
   --  Auto import everything in `lua/plugins/*.lua`
   --  For additional information, see `:help lazy.nvim-lazy.nvim-structuring-your-plugins`
   { import = 'plugins' },
+  -- to import one file at a time you can do `require 'path.name'` to include a plugin definition from file lua/path/name.lua
 
-  -- Adds git related signs to the gutter, as well as utilities for managing changes
-  -- require 'kickstart.plugins.gitsigns',
 
-  -- Useful plugin to show you pending keybinds.
-  -- require 'kickstart.plugins.which-key',
+  -- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
+  'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
 
-  -- Fuzzy Finder (files, lsp, etc)
---   require 'kickstart.plugins.telescope',
+  -- bufferline
+  -- Setting `opts = {}` forces a plugin to be loaded; Lazy will call `Plugin.config()` (even when opts is `{}`).
+  { 'akinsho/bufferline.nvim', version = '*', dependencies = 'nvim-tree/nvim-web-devicons', opts = {} },
 
-  -- require 'kickstart.plugins.lspconfig',
-
-  -- require 'kickstart.plugins.autoformat',
-
-  -- require 'kickstart.plugins.autocomplete',
-
---   require 'kickstart.plugins.debug',
-  -- require 'kickstart.plugins.indent_line',
---   require 'kickstart.plugins.autopairs',
-  -- require 'kickstart.plugins.neo-tree',
-
-  { -- You can easily change to a different colorscheme.
-    -- Change the name of the colorscheme plugin below, and then
-    -- change the command in the config to whatever the name of that colorscheme is.
-    --
-    -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
+  {
+    -- `:Telescope colorscheme` to see what colorschemes are installed
     'folke/tokyonight.nvim',
     priority = 1000, -- Make sure to load this before all the other start plugins.
     init = function()
-      -- Load the colorscheme here.
-      -- Like many other themes, this one has different styles, and you could load
-      -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
       vim.cmd.colorscheme 'tokyonight-night'
 
       -- You can configure highlights by doing something like:
@@ -68,7 +36,25 @@ require('lazy').setup({
   },
 
   -- Highlight todo, notes, etc in comments
-  { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
+  { 'folke/todo-comments.nvim',
+    event = 'VimEnter',
+    dependencies = { 'nvim-lua/plenary.nvim' },
+    opts = { signs = false },
+    config = function()
+      vim.keymap.set('n', '<leader>st', '<cmd>TodoTelescope<cr>', { desc = '[S]earch [t]odo'})
+    end,
+  },
+
+  {
+    'MeanderingProgrammer/render-markdown.nvim',
+    dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' },
+    -- only load this plugin when I open a markdown file
+    event = {'BufRead *.md'},
+    keys = {
+      { '<leader>tm', '<cmd>RenderMarkdown buf_toggle<cr>', desc = '[t]oggle [m]arkdown renderer' }
+    },
+    opts = {},
+  },
 
   { -- Collection of various small independent plugins/modules
     'echasnovski/mini.nvim',
