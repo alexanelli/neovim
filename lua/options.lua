@@ -30,7 +30,7 @@ vim.opt.shiftwidth = 4
 
 -- folding
 vim.opt.foldlevelstart = 99 -- Default to no folds closed on new buffers
-vim.opt.foldmethod = 'syntax' -- Fold using syntax by default
+vim.opt.foldmethod = 'indent'
 vim.opt.foldnestmax = 5 -- Don't make me dig through more than 5 folds
 
 -- open splits in a sane way

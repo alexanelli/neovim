@@ -16,7 +16,6 @@ vim.keymap.set('i', 'jk', '<Esc>', { noremap = true })
 
 -- shotcuts for copy/paste with system clipboard
 vim.keymap.set('v', '<leader>Sc', '"+y', {desc = '[S]ystem [c]opy'})
-vim.keymap.set('n', '<leader>Sp', '"+p', {desc = '[S]ystem [p]aste'})
 
 -- Make split navigation easier.
 --  Use CTRL+<hjkl> to switch between windows

@@ -49,6 +49,7 @@ require('lazy').setup({
     'MeanderingProgrammer/render-markdown.nvim',
     dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' },
     -- only load this plugin when I open a markdown file
+    -- TODO: maybe try using `ft = {markdown}` instead for a less hacky version?
     event = {'BufRead *.md'},
     keys = {
       { '<leader>tm', '<cmd>RenderMarkdown buf_toggle<cr>', desc = '[t]oggle [m]arkdown renderer' }
