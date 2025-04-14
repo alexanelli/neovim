@@ -56,7 +56,19 @@ return {
         --     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
         --   },
         -- },
-        -- pickers = {}
+        -- pickers = {
+        --   live_grep = {
+        --     -- file_ignore_patterns = { '.git' },
+        --     additional_args = function(_)
+        --       -- give ripgrep the --hidden flag so it includes hidden file
+        --       return { '--hidden' }
+        --     end,
+        --   },
+        --   find_files = {
+        --     -- file_ignore_patterns = { '.git' },
+        --     hidden = true,
+        --   },
+        -- },
         extensions = {
           ['ui-select'] = {
             require('telescope.themes').get_dropdown(),
@@ -75,7 +87,6 @@ return {
       vim.keymap.set('n', '<leader>sf', builtin.find_files, { desc = '[S]earch [F]iles' })
       vim.keymap.set('n', '<leader>ss', builtin.builtin, { desc = '[S]earch [S]elect Telescope' })
       vim.keymap.set('n', '<leader>sw', builtin.grep_string, { desc = '[S]earch current [W]ord' })
-      vim.keymap.set('n', '<leader>sg', builtin.live_grep, { desc = '[S]earch by [G]rep' })
       vim.keymap.set('n', '<leader>si', builtin.git_status, { desc = '[S]earch g[i]t status' })
       vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
       vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
@@ -90,6 +101,12 @@ return {
           previewer = false,
         })
       end, { desc = '[S]earch in current [B]uffer' })
+
+      vim.keymap.set('n', '<leader>sg', function()
+        builtin.live_grep {
+          additional_args = {'--hidden'},
+        }
+      end, { desc = '[S]earch by [G]rep' })
 
       -- It's also possible to pass additional configuration options.
       --  See `:help telescope.builtin.live_grep()` for information about particular keys
