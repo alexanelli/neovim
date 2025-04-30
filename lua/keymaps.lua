@@ -15,7 +15,7 @@ if you're here for vscode it looks like this:
 vim.keymap.set('i', 'jk', '<Esc>', { noremap = true })
 
 -- shotcuts for copy/paste with system clipboard
-vim.keymap.set('v', '<leader>Sc', '"+y', {desc = '[S]ystem [c]opy'})
+vim.keymap.set('v', '<leader>c', '"+y', {desc = '[c]opy to system clipboard'})
 
 -- Make split navigation easier.
 --  Use CTRL+<hjkl> to switch between windows
