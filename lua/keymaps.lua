@@ -17,6 +17,10 @@ vim.keymap.set('i', 'jk', '<Esc>', { noremap = true })
 -- shotcuts for copy/paste with system clipboard
 vim.keymap.set('v', '<leader>c', '"+y', {desc = '[c]opy to system clipboard'})
 
+-- insert todays date
+-- using [[ ]] string instead of quotes as a raw string in lua (otherwise you get escape sequence errors)
+vim.keymap.set('n', '<leader>id', [[<CMD>r! date +"\%d \%b \%Y"<ENTER>]], {desc = '[i]nsert [d]ate'})
+
 -- Make split navigation easier.
 --  Use CTRL+<hjkl> to switch between windows
 --
@@ -42,6 +46,8 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 -- or just use <C-\><C-n> to exit terminal mode
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
+-- show diagnostic in full - helpful for when it doesn't fit inline
+vim.keymap.set('n', '<leader>di', '<cmd>lua vim.diagnostic.open_float(nil, { border = "rounded" })<cr>')
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
