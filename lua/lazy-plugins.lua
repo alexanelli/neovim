@@ -54,7 +54,11 @@ require('lazy').setup({
     keys = {
       { '<leader>tm', '<cmd>RenderMarkdown buf_toggle<cr>', desc = '[t]oggle [m]arkdown renderer' }
     },
-    opts = {},
+    config = function ()
+      require('render-markdown').setup({
+        anti_conceal = { enabled = false },
+      })
+    end
   },
 
   { -- Collection of various small independent plugins/modules
