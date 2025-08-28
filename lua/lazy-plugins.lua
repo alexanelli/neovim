@@ -50,7 +50,8 @@ require('lazy').setup({
     dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' },
     -- only load this plugin when I open a markdown file
     -- TODO: maybe try using `ft = {markdown}` instead for a less hacky version?
-    event = {'BufRead *.md'},
+    -- turnin this off for now, I can always toggle it on manually?
+    -- event = {'BufRead *.md'},
     keys = {
       { '<leader>tm', '<cmd>RenderMarkdown buf_toggle<cr>', desc = '[t]oggle [m]arkdown renderer' }
     },
@@ -82,17 +83,17 @@ require('lazy').setup({
       -- Simple and easy statusline.
       --  You could remove this setup call if you don't like it,
       --  and try some other statusline plugin
-      local statusline = require 'mini.statusline'
+      -- local statusline = require 'mini.statusline'
       -- set use_icons to true if you have a Nerd Font
-      statusline.setup { use_icons = vim.g.have_nerd_font }
+      -- statusline.setup { use_icons = vim.g.have_nerd_font }
 
       -- You can configure sections in the statusline by overriding their
       -- default behavior. For example, here we set the section for
       -- cursor location to LINE:COLUMN
-      ---@diagnostic disable-next-line: duplicate-set-field
-      statusline.section_location = function()
-        return '%2l:%-2v'
-      end
+      -- ---@diagnostic disable-next-line: duplicate-set-field
+      -- statusline.section_location = function()
+      --   return '%2l:%-2v'
+      -- end
 
       -- ... and there is more!
       --  Check out: https://github.com/echasnovski/mini.nvim
