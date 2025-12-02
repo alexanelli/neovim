@@ -45,21 +45,34 @@ require('lazy').setup({
     end,
   },
 
+  -- render markdown in vim buffer
+  -- this thing is being weird for whatever reason so I'm turning it off for now
+  -- {
+  --   'MeanderingProgrammer/render-markdown.nvim',
+  --   dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' },
+  --   -- only load this plugin when I open a markdown file
+  --   -- TODO: maybe try using `ft = {markdown}` instead for a less hacky version?
+  --   -- turnin this off for now, I can always toggle it on manually?
+  --   event = {'BufRead *.md'},
+  --   keys = {
+  --     { '<leader>tm', '<cmd>RenderMarkdown buf_toggle<cr>', desc = '[t]oggle [m]arkdown renderer' }
+  --   },
+  --   config = function ()
+  --     require('render-markdown').setup({
+  --       anti_conceal = { enabled = false },
+  --     })
+  --   end
+  -- },
+
+  -- render github flavored markdown in browser
   {
-    'MeanderingProgrammer/render-markdown.nvim',
-    dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' },
-    -- only load this plugin when I open a markdown file
-    -- TODO: maybe try using `ft = {markdown}` instead for a less hacky version?
-    -- turnin this off for now, I can always toggle it on manually?
-    -- event = {'BufRead *.md'},
-    keys = {
-      { '<leader>tm', '<cmd>RenderMarkdown buf_toggle<cr>', desc = '[t]oggle [m]arkdown renderer' }
+    "wallpants/github-preview.nvim",
+    opts = {
+        -- config goes here
     },
-    config = function ()
-      require('render-markdown').setup({
-        anti_conceal = { enabled = false },
-      })
-    end
+    keys = {
+      { '<leader>tg', '<cmd>GithubPreviewToggle<cr>', desc = '[t]oggle [g]ithub markdown renderer' }
+    },
   },
 
   { -- Collection of various small independent plugins/modules
