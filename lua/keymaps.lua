@@ -21,11 +21,12 @@ vim.keymap.set('v', '<leader>c', '"+y', {desc = '[c]opy to system clipboard'})
 -- todays date
 -- using [[ ]] string instead of quotes as a raw string in lua (otherwise you get escape sequence errors)
 vim.keymap.set('n', '<leader>id', [[<CMD>r! date +"\%d \%b \%Y"<ENTER>]], {desc = '[i]nsert [d]ate'})
--- insert markdown list item
-local function insert_markdown_list()
-  vim.api.nvim_paste('- [ ]\n', false, -1)
-end
-vim.keymap.set('n', '<leader>iml', insert_markdown_list, { desc = '[i]nsert [m]arkdown [l]ist item' })
+
+-- insert markdown list item, commenting this out for now, kind jank
+-- local function insert_markdown_list()
+--   vim.api.nvim_paste('- [ ]\n', false, -1)
+-- end
+-- vim.keymap.set('n', '<leader>iml', insert_markdown_list, { desc = '[i]nsert [m]arkdown [l]ist item' })
 
 -- Make split navigation easier.
 --  Use CTRL+<hjkl> to switch between windows
