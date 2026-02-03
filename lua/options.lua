@@ -29,8 +29,9 @@ vim.opt.tabstop = 4 -- Display tabs 4 spaces wide, don't need anymore because of
 vim.opt.shiftwidth = 4
 
 -- folding
+vim.opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+vim.opt.foldmethod = 'expr'
 vim.opt.foldlevelstart = 99 -- Default to no folds closed on new buffers
-vim.opt.foldmethod = 'indent'
 vim.opt.foldnestmax = 5 -- Don't make me dig through more than 5 folds
 
 -- open splits in a sane way
