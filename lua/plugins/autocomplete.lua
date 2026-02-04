@@ -16,6 +16,10 @@ return { -- Autocompletion
     local cmp = require 'cmp'
 
     cmp.setup {
+      -- don't do completions in markdown files
+      enabled = function()
+        return (vim.bo.ft ~= "markdown")
+      end,
       snippet = {
         -- REQUIRED - you must specify a snippet engine
         expand = function(args)
@@ -63,5 +67,6 @@ return { -- Autocompletion
     -- Register nvim-cmp lsp capabilities
     -- got this line from the lazyvim configs here: https://www.lazyvim.org/extras/coding/nvim-cmp#nvim-cmp-1
     vim.lsp.config('*', { capabilities = require('cmp_nvim_lsp').default_capabilities() })
+
   end,
 }
