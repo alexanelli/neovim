@@ -14,6 +14,17 @@ return {
   },
   { 'Bilal2453/luvit-meta', lazy = true },
   {
+    "ray-x/go.nvim",
+    dependencies = {  -- optional packages
+      "ray-x/guihua.lua",
+      "neovim/nvim-lspconfig",
+      "nvim-treesitter/nvim-treesitter",
+    },
+    event = {"CmdlineEnter"},
+    ft = {"go", 'gomod'},
+    build = ':lua require("go.install").update_all_sync()' -- if you need to install/update all binaries
+  },
+  {
     -- Main LSP Configuration
     'neovim/nvim-lspconfig',
     dependencies = {
@@ -30,16 +41,6 @@ return {
       'hrsh7th/cmp-nvim-lsp',
     },
     config = function()
-      -- LSP provides Neovim with features like:
-      --  - Go to definition
-      --  - Find references
-      --  - Autocompletion
-      --  - Symbol Search
-      --  - and more!
-      --
-      -- Thus, Language Servers are external tools that must be installed separately from
-      -- Neovim. This is where `mason` and related plugins come into play.
-      --
       -- If you're wondering about lsp vs treesitter, you can check out the wonderfully
       -- and elegantly composed help section, `:help lsp-vs-treesitter`
 
@@ -217,6 +218,13 @@ return {
           end,
         },
       }
+      -- now that mason is set up, add back in the go nvim default options
+      require('go').setup{
+        lsp_cfg = false
+        -- other setups...
+      }
+      local cfg = require'go.lsp'.config() -- config() return the go.nvim gopls setup
+      require('lspconfig').gopls.setup(cfg)
     end,
   },
 }
