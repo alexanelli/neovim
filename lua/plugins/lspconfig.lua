@@ -214,7 +214,9 @@ return {
             -- by the server configuration above. Useful when disabling
             -- certain features of an LSP (for example, turning off formatting for tsserver)
             server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
-            require('lspconfig')[server_name].setup(server)
+            -- neovim is deprecating require('lspconfig') as of v3.0.0
+            -- require('lspconfig')[server_name].setup(server)
+            vim.lsp.config(server_name, server)
           end,
         },
       }
@@ -224,7 +226,9 @@ return {
         -- other setups...
       }
       local cfg = require'go.lsp'.config() -- config() return the go.nvim gopls setup
-      require('lspconfig').gopls.setup(cfg)
+      -- neovim is deprecating require('lspconfig') as of v3.0.0
+      -- require('lspconfig').gopls.setup(cfg)
+      vim.lsp.config('gopls', cfg)
     end,
   },
 }
