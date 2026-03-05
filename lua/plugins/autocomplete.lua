@@ -18,9 +18,8 @@ return { -- Autocompletion
     cmp.setup {
       -- don't do completions in markdown files
       enabled = function()
-        buftype = vim.api.nvim_buf_get_option(0, "buftype")
-        filetype = vim.bo.ft
-        if buftype == "prompt" or filetype ~= "markdown" then return false end
+        if vim.bo.ft == "markdown" then return false end
+        if vim.bo.buftype == "prompt" then return false end
         return true
       end,
       snippet = {
