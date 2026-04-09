@@ -1,1 +1,4 @@
-return { 'nvim-treesitter/nvim-treesitter-context', opts = {} }
+return {
+  'nvim-treesitter/nvim-treesitter-context',
+  opts = {}
+}
