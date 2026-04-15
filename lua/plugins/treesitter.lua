@@ -36,12 +36,9 @@ return {
       'vimdoc',
     }
 
-    local nts = require 'nvim-treesitter'
+    require('nvim-treesitter').install(parsers)
 
-    nts.install(parsers)
-
-    -- Apparently not every tree-sitter parser is the same as the file type detected
-    -- I.e. vim filetypes don't always line up with the tree-sitter parser names
+    -- Apparently vim filetypes don't always line up with the tree-sitter parser names
     -- So the patterns need to be registered more cleverly
     -- pulled from https://mhpark.me/posts/update-treesitter-main/
     local patterns = {}
