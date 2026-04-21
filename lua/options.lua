@@ -12,6 +12,7 @@ vim.opt.scrolloff = 10 -- Minimum number of lines to keep above and below cursor
 vim.opt.timeoutlen = 300 -- Decrease mapped sequence and which-key wait time (default is 1000ms) - from kickstart
 vim.opt.undofile = true -- save undo history to a file so it persists between sessions - from kickstart
 vim.opt.updatetime = 250 -- backup to swap file 250ms after I stop typing (default is 4000ms) - from kickstart
+vim.opt.swapfile = false -- bad
 
 -- display
 vim.opt.cursorline = true -- highlight cursor line
