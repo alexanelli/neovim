@@ -19,8 +19,10 @@ vim.keymap.set('v', '<leader>c', '"+y', {desc = '[c]opy to system clipboard'})
 
 -- INSERT STUFF
 -- todays date
--- using [[ ]] string instead of quotes as a raw string in lua (otherwise you get escape sequence errors)
-vim.keymap.set('n', '<leader>id', [[<CMD>r! date +"\%d \%b \%Y"<ENTER>]], {desc = '[i]nsert [d]ate'})
+-- using [[ ]] string instead of quotes as a literal string in lua
+-- (otherwise you get escape sequence errors, which mattered when I was using a custom date format that included \ and % chars)
+-- vim.keymap.set('n', '<leader>id', [[<CMD>read !date --iso-8601<CR>]], {desc = '[i]nsert [d]ate'})
+vim.keymap.set('n', '<leader>id', [["=strftime('%Y-%m-%d')<CR>P]], {desc = '[i]nsert [d]ate'})
 
 -- insert markdown list item, commenting this out for now, kind jank
 -- local function insert_markdown_list()
